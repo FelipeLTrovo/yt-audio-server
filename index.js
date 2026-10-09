@@ -34,14 +34,14 @@ async function triggerPublishCron() {
   }
 }
 
-// AGENDAMENTO: Roda a cada hora no minuto 0 (Ex: 09:00, 10:00, 11:00...)
-// Sintaxe do Cron: (minuto hora dia-do-mês mês dia-da-semana)
-cron.schedule("0 * * * *", () => {
+// AGENDAMENTO: Roda a cada hora no minuto 5 (Ex: 09:05, 10:05, 11:05...)
+// Expression: "5 * * * *" -> Minuto 5 | Qualquer Hora | Qualquer Dia
+cron.schedule("5 * * * *", () => {
   triggerPublishCron();
 });
 
 /* =========================================================
-   ROTA DE ÁUDIO DO YOUTUBE (CÓDIGO ANTERIOR)
+   ROTA DE ÁUDIO DO YOUTUBE
    ========================================================= */
 app.get("/audio", (req, res) => {
   const id = String(req.query.id ?? "");
@@ -87,5 +87,5 @@ app.get("/audio", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor de áudio e Cron rodando na porta ${PORT}`);
+  console.log(`Servidor de áudio e Cron (minuto :05) rodando na porta ${PORT}`);
 });
